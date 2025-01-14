@@ -72,7 +72,7 @@
 
     <div class="container">
         <h2>Register</h2>
-        <form action="/submit-form" method="post">
+        <form action="/registar-user" method="post">
         
           @csrf
 

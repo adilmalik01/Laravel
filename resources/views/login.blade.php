@@ -72,9 +72,8 @@
     <div class="container">
         <h2>Register</h2>
         <form action="/login-form" method="post">
-
-          @csrf
-
+            @csrf
+            
             <div class="input-group">
                 <label for="email">Email</label>
                 <input type="email" id="email" name="email" required>

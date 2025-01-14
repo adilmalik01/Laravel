@@ -129,6 +129,7 @@
             </div>
 
             <div class="account">
+                <li><a href="create-product">Add Product</a></li>
                 <li><a href="login">Login</a></li>
                 <li><a href="registar">Register</a></li>
             </div>

@@ -20,7 +20,7 @@ class AccountController extends Controller
     }  
 
 
-    public function AddUser(Request $request)
+    public function RegistarUser(Request $request)
     {
 
 
@@ -32,7 +32,7 @@ class AccountController extends Controller
     }
 
 
-    public function LoginForm(Request $request)
+    public function UserLogin(Request $request)
     {
 
         $email = $request->input("email");

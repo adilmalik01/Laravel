@@ -13,13 +13,18 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/about', [ProductController::class,"about"]);
-Route::get('/login', [AccountController::class,"Login"]);
-Route::get('/registar', [AccountController::class,"Registar"]);
-Route::get('/products',[ProductController::class,"AllProducts"]);
+Route::get('/about', [ProductController::class, "about"]);
+Route::get('/login', [AccountController::class, "Login"]);
+Route::get('/registar', [AccountController::class, "Registar"]);
+Route::get('/products', [ProductController::class, "AllProducts"]);
+
 
 Route::get('/service', function () {
     return view('service');
+});
+
+Route::get('create-product', function () {
+    return view('create-product');
 });
 
 Route::get('/contact', function () {
@@ -28,9 +33,12 @@ Route::get('/contact', function () {
 
 
 // HTTP POST REQUEST 
-Route::post('/login-form',[AccountController::class,"LoginForm"]);
-Route::post('/submit-form', [AccountController::class,"AddUser"]);
+Route::post('/login-form', [AccountController::class, "UserLogin"]);
+Route::post('/registar-user', [AccountController::class, "RegistarUser"]);
+Route::post("/addProduct", [ProductController::class, "AddProduct"]);
 
 
+Route::post("/addProduct", [ProductController::class, "AddProduct"]);
 
 
+Route::get("/product/delete/{id}", [ProductController::class, "DeleteProduct"]);
