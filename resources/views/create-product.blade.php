@@ -1,73 +1,94 @@
-@include("partials.navbar",["name"=>"Add Product"])
+@include("partials.navbar", ["name" => "Add Product"])
 
 <style>
+
     .main {
-        width: 100%;
-        min-height: 50vh;
         display: flex;
         justify-content: center;
         align-items: center;
+        height: 100vh;
+        background-color: #f4f7fc;
     }
 
-    /* Form container */
     .container {
-        background-color: white;
+        background-color: #ffffff;
         padding: 30px;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-        border-radius: 8px;
+        border-radius: 10px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
         width: 100%;
-        max-width: 400px;
+        max-width: 600px;
+        transition: transform 0.3s ease;
     }
-
     h1 {
         text-align: center;
         color: #333;
+        font-size: 26px;
         margin-bottom: 20px;
     }
 
-    /* Input groups */
     .input-group {
-        margin-bottom: 20px;
+        margin-bottom: 25px;
     }
 
     .input-group label {
         display: block;
-        margin-bottom: 5px;
+        margin-bottom: 8px;
         color: #555;
-        font-weight: bold;
+        font-size: 14px;
+        font-weight: 600;
     }
 
     .input-group input,
-    .input-group textarea {
+    .input-group textarea,
+    .input-group select {
         width: 100%;
-        padding: 12px;
-        border-radius: 8px;
-        border: 1px solid #ccc;
+        padding: 14px;
+        border-radius: 10px;
+        border: 1px solid #ddd;
+        background-color: #f9f9f9;
         font-size: 14px;
         color: #333;
-        background-color: #f9f9f9;
         box-sizing: border-box;
+        transition: border-color 0.3s, background-color 0.3s;
     }
 
     .input-group input:focus,
-    .input-group textarea:focus {
+    .input-group textarea:focus,
+    .input-group select:focus {
         outline: none;
         border-color: #007BFF;
         background-color: #fff;
     }
 
-    /* Submit button */
+    .input-group input[type="file"] {
+        border: none;
+        padding: 0;
+    }
+
+    .input-group input[type="file"]::file-selector-button {
+        padding: 10px;
+        background-color: #007BFF;
+        color: white;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+    .input-group input[type="file"]::file-selector-button:hover {
+        background-color: #0056b3;
+    }
+
     .submit-btn {
         width: 100%;
-        padding: 12px;
+        padding: 15px;
         border: none;
         background-color: #007BFF;
         color: white;
         font-size: 16px;
         font-weight: bold;
-        border-radius: 8px;
+        border-radius: 10px;
         cursor: pointer;
-        transition: background-color 0.3s;
+        transition: background-color 0.3s ease;
     }
 
     .submit-btn:hover {
@@ -77,28 +98,74 @@
     .submit-btn:active {
         background-color: #00408d;
     }
-</style>
-<div class="main">
 
+    /* Responsive Design */
+    @media (max-width: 600px) {
+        .container {
+            padding: 20px;
+            max-width: 90%;
+        }
+
+        h1 {
+            font-size: 22px;
+        }
+
+        .submit-btn {
+            padding: 12px;
+            font-size: 14px;
+        }
+    }
+</style>
+
+<div class="main">
     <div class="container">
         <h1>Add New Product</h1>
-        <form action="/addProduct" method="POST" class="product-form">
+        <form action="/addProduct" method="POST" class="product-form" enctype="multipart/form-data">
             @csrf
+            <!-- Product Name -->
             <div class="input-group">
                 <label for="productName">Product Name</label>
                 <input type="text" id="productName" name="productName" required placeholder="Enter product name">
             </div>
 
+            <!-- Product Price -->
             <div class="input-group">
                 <label for="productPrice">Product Price</label>
                 <input type="number" id="productPrice" name="productPrice" required placeholder="Enter product price">
             </div>
 
+            <!-- Product Details -->
             <div class="input-group">
                 <label for="productDetails">Product Details</label>
                 <textarea id="productDetails" name="productDetails" rows="4" required placeholder="Enter product details"></textarea>
             </div>
 
+            <!-- Product Category -->
+            <div class="input-group">
+                <label for="productCategory">Product Category</label>
+                <select id="productCategory" name="productCategory" required>
+                    <option value="">Select Category</option>
+                    <option value="Electronics">Electronics</option>
+                    <option value="Clothing">Clothing</option>
+                    <option value="Home Appliances">Home Appliances</option>
+                    <option value="Books">Books</option>
+                    <!-- Add more categories as needed -->
+                </select>
+            </div>
+
+            <!-- Product Image -->
+            <div class="input-group">
+                <label for="productImage">Product Image</label>
+                <input type="file" id="productImage" name="productImage" accept="image/*" required>
+            </div>
+
+            <!-- Stock Quantity -->
+            <div class="input-group">
+                <label for="productStock">Stock Quantity</label>
+                <input type="number" id="productStock" name="productStock" required placeholder="Enter stock quantity">
+            </div>
+
+            <!-- Submit Button -->
             <button type="submit" class="submit-btn">Add Product</button>
         </form>
     </div>

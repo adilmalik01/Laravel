@@ -1,5 +1,4 @@
-@include('partials.navbar',['name' => 'products'])
-
+@include('partials.navbar', ['name' => 'Products'])
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
 
@@ -27,6 +26,7 @@
 
     .product-info {
         margin-bottom: 20px;
+        text-align: center;
     }
 
     .product-name {
@@ -42,14 +42,34 @@
         margin: 10px 0;
     }
 
+    .product-category {
+        font-size: 1em;
+        color: #777;
+        margin: 5px 0;
+    }
+
     .product-details {
         font-size: 1em;
         color: #777;
+        margin: 5px 0;
+    }
+
+    .product-stock {
+        font-size: 1em;
+        color: #333;
+        margin: 5px 0;
+    }
+
+    .product-image {
+        width: 100%;
+        height: auto;
+        border-radius: 8px;
+        margin-bottom: 15px;
     }
 
     .product-actions {
         display: flex;
-        gap: 10px;
+        justify-content: space-between;
     }
 
     .action-btn {
@@ -98,23 +118,29 @@
     }
 </style>
 
-
-
 <div class="product-container">
     @foreach ($products as $product)
     <div class="product">
         <div class="product-info">
+            <!-- Product Image -->
+            <img class="product-image" src="{{ asset('storage/' . $product['image']) }}" alt="{{ $product['product_name'] }}">
+
             <h2 class="product-name">{{ $product["product_name"] }}</h2>
             <p class="price">$ {{ number_format($product['product_price'], 2) }}</p>
+
+            <!-- Display Product Category -->
+            <p class="product-category"><strong>Category:</strong> {{ $product["product_category"] }}</p>
+            
             <p class="product-details">{{ $product["product_details"] }}</p>
+
+            <!-- Display Product Stock -->
+            <p class="product-stock"><strong>Stock:</strong> {{ $product["product_stock"] }}</p>
         </div>
 
         <div class="product-actions">
             <button class="action-btn delete-btn">
-                <a onclick="return confirm('are you sure ?')" href="/product/delete/{{$product["id"]}}">
+                <a onclick="return confirm('Are you sure?')" href="/product/delete/{{$product["id"]}}">
                     <i class="fas fa-trash-alt"></i> Delete
-
-                    
                 </a>
             </button>
             <button class="action-btn edit-btn">

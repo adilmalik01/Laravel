@@ -22,6 +22,17 @@ class ProductController extends Controller
         $product->product_name = $request->productName;
         $product->product_price = $request->productPrice;
         $product->product_details = $request->productDetails;
+        $product->product_Category = $request->productCategory;
+        $product->product_stock =  $request->productStock;
+
+        if ($request->hasFile("productImage")) {
+            $imagePath = $request->file("productImage")->store("products", "public");
+        };
+
+
+
+        $product->image = $imagePath;
+
 
         $product->save();
 
