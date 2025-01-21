@@ -130,7 +130,7 @@
 
             <!-- Display Product Category -->
             <p class="product-category"><strong>Category:</strong> {{ $product["product_category"] }}</p>
-            
+
             <p class="product-details">{{ $product["product_details"] }}</p>
 
             <!-- Display Product Stock -->
@@ -144,7 +144,9 @@
                 </a>
             </button>
             <button class="action-btn edit-btn">
-                <i class="fas fa-edit"></i> Edit
+                <a href="/product/edit/{{$product["id"]}}">
+                    <i class="fas fa-edit"></i> Edit
+                </a>
             </button>
         </div>
     </div>

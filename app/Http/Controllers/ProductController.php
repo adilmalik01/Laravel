@@ -15,6 +15,25 @@ class ProductController extends Controller
 
 
 
+
+
+
+
+
+
+
+
+
+    public function EditProduct($id)
+    {
+
+       $product = Product::findOrFail($id);
+       return view("editProduct", compact("product"));
+
+
+    }
+
+
     public function AddProduct(Request $request)
     {
 
