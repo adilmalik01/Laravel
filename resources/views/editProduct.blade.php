@@ -1,4 +1,4 @@
-@include("partials.navbar", ["name" => "Edit Product"])
+@include('partials.navbar', ['name' => 'Edit Product'])
 
 <style>
     .main {
@@ -120,20 +120,22 @@
 <div class="main">
     <div class="container">
         <h1>Edit Product</h1>
-        <form action="/updateProduct/{{ $product->id }}" method="POST" class="product-form" enctype="multipart/form-data">
+        <form action="/product/update/{{ $product->id }}" method="POST" class="product-form" enctype="multipart/form-data">
             @csrf
-            @method('PUT') <!-- This will ensure that the form submits as a PUT request for updating -->
 
             <!-- Product Name -->
             <div class="input-group">
                 <label for="productName">Product Name</label>
-                <input type="text" id="productName" name="productName" value="{{ old('productName', $product->product_name) }}" required placeholder="Enter product name">
+                <input type="text" id="productName" name="productName"
+                    value="{{ old('productName', $product->product_name) }}" required placeholder="Enter product name">
             </div>
 
             <!-- Product Price -->
             <div class="input-group">
                 <label for="productPrice">Product Price</label>
-                <input type="number" id="productPrice" name="productPrice" value="{{ old('productPrice', $product->product_price) }}" required placeholder="Enter product price">
+                <input type="number" id="productPrice" name="productPrice"
+                    value="{{ old('productPrice', $product->product_price) }}" required
+                    placeholder="Enter product price">
             </div>
 
             <!-- Product Details -->
@@ -147,9 +149,12 @@
                 <label for="productCategory">Product Category</label>
                 <select id="productCategory" name="productCategory" required>
                     <option value="">Select Category</option>
-                    <option value="Electronics" {{ $product->product_category == 'Electronics' ? 'selected' : '' }}>Electronics</option>
-                    <option value="Clothing" {{ $product->product_category == 'Clothing' ? 'selected' : '' }}>Clothing</option>
-                    <option value="Home Appliances" {{ $product->product_category == 'Home Appliances' ? 'selected' : '' }}>Home Appliances</option>
+                    <option value="Electronics" {{ $product->product_category == 'Electronics' ? 'selected' : '' }}>
+                        Electronics</option>
+                    <option value="Clothing" {{ $product->product_category == 'Clothing' ? 'selected' : '' }}>Clothing
+                    </option>
+                    <option value="Home Appliances"
+                        {{ $product->product_category == 'Home Appliances' ? 'selected' : '' }}>Home Appliances</option>
                     <option value="Books" {{ $product->product_category == 'Books' ? 'selected' : '' }}>Books</option>
                     <!-- Add more categories as needed -->
                 </select>
@@ -160,15 +165,18 @@
                 <label for="productImage">Product Image</label>
                 <input type="file" id="productImage" name="productImage" accept="image/*">
                 <!-- Display current image if available -->
-                @if($product->image)
-                <img src="{{ asset('storage/' . $product->image) }}" alt="Product Image" width="100" height="100">
+                @if ($product->image)
+                    <img src="{{ asset('storage/' . $product->image) }}" alt="Product Image" width="100"
+                        height="100">
                 @endif
             </div>
 
             <!-- Stock Quantity -->
             <div class="input-group">
                 <label for="productStock">Stock Quantity</label>
-                <input type="number" id="productStock" name="productStock" value="{{ old('productStock', $product->product_stock) }}" required placeholder="Enter stock quantity">
+                <input type="number" id="productStock" name="productStock"
+                    value="{{ old('productStock', $product->product_stock) }}" required
+                    placeholder="Enter stock quantity">
             </div>
 
             <!-- Submit Button -->

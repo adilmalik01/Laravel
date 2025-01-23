@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Route;
 
 
 
-// HTTP GET REQUEST 
+// HTTP GET REQUEST
 Route::get('/', function () {
     return view('welcome');
 });
@@ -32,7 +32,7 @@ Route::get('/contact', function () {
 });
 
 
-// HTTP POST REQUEST 
+// HTTP POST REQUEST
 Route::post('/login-form', [AccountController::class, "UserLogin"]);
 Route::post('/registar-user', [AccountController::class, "RegistarUser"]);
 Route::post("/addProduct", [ProductController::class, "AddProduct"]);
@@ -43,6 +43,6 @@ Route::post("/addProduct", [ProductController::class, "AddProduct"]);
 
 Route::get("/product/delete/{id}", [ProductController::class, "DeleteProduct"]);
 
+Route::post("/product/update/{id}", [ProductController::class, "UpdateProduct"]);
+
 Route::get("/product/edit/{id}", [ProductController::class, "EditProduct"]);
-
-
